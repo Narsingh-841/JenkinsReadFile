@@ -28,18 +28,25 @@ public class Files {
             System.exit(1);
         }
 
+        // Print the workspace directory for debugging
+        System.out.println("Workspace Directory: " + workspaceDirectory);
+
         // Construct the file path
         String filePath = new File(workspaceDirectory, fileParameterName).getAbsolutePath();
+        System.out.println("Constructed File Path: " + filePath);
+
         File file = new File(filePath);
 
         // Check if the file exists and read it
         if (file.exists()) {
+            System.out.println("File exists. Reading file...");
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     System.out.println(line);
                 }
             } catch (IOException e) {
+                System.err.println("Error reading the file: " + e.getMessage());
                 e.printStackTrace();
             }
         } else {
